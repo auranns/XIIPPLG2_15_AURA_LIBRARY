@@ -4,12 +4,14 @@ const categoriesRouter = require("./routes/categories");
 const UserRouter = require("./routes/user");
 const authMiddleware = require("./middleware/authMiddleware");
 const User = require("./models/User");
+const reviewRouter = require("./routes/review");
 
 const app = express();
 app.use(express.json());
 
 app.use("/api/categories", categoriesRouter);
 app.use("/api", UserRouter);
+app.use("/api/review", reviewRouter);
 
 app.get("/profile", authMiddleware, async (req, res) => {
   try {
