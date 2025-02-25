@@ -5,8 +5,8 @@ const Review = require("../models/Review");
 // Create new review
 router.post("/", async (req, res) => {
   try {
-    const { books_id, user_id, rating, comment } = req.body;
-    const reviewId = await Review.addReview({ books_id, user_id, rating, comment });
+    const { book_id, user_id, rating, comment } = req.body;
+    const reviewId = await Review.addReview({ book_id, user_id, rating, comment });
     res.status(201).json({ message: "Review added successfully", reviewId });
   } catch (error) {
     res.status(500).json({ message: "Error adding review", error: error.message });
@@ -27,8 +27,8 @@ router.get("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const { books_id, user_id, rating, comment } = req.body;
-    const success = await Review.updateReview(id, { books_id, user_id, rating, comment });
+    const { book_id, user_id, rating, comment } = req.body;
+    const success = await Review.updateReview(id, { book_id, user_id, rating, comment });
     if (success) {
       res.json({ message: "Review updated successfully" });
     } else {
